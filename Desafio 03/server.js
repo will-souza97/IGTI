@@ -2,22 +2,26 @@ const express = require("express");
 const server = express();
 const fs = require("fs");
 
-const city = require("./dados/Cidades.json");
+const cities = require("./dados/CIdades.json");
 const states = require("./dados/Estados.json");
 
 server.use(express.json());
 
 server.get("/searchStates", async (_, res) => {
-  for (let estado of states) {
+  // Percorrer array de Estados
+  for (let state of states) {
     const dados = [];
 
-    for (let cidade of city) {
-      if (cidade.Estado === estado.ID) {
-        dados.push(cidade);
+    // Percorrer array de Cidades
+    for (let city of cities) {
+      if (city.state === state.ID) {
+        dados.push(city);
       }
     }
+
+    // Criar JSON com cada UF e preenche-las com as suas respectivas cidades
     await fs.writeFile(
-      `./UF/${estado.Sigla}.json`,
+      `./UF/${state.Sigla}.json`,
       JSON.stringify(dados),
       (err) => {
         if (err) throw err;
