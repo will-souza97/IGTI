@@ -1,0 +1,10 @@
+{
+  "accumulator": 5,
+  "accounts": [
+    {
+      "id": 4,
+      "name": "Willian de Souza",
+      "balance": 2120
+    }
+  ]
+}
